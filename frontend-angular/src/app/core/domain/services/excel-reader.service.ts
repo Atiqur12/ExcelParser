@@ -15,4 +15,5 @@ export class ExcelReaderService {
     const sheet = workbook.Sheets[sheetName];
     return XLSX.utils.sheet_to_json(sheet);
   }
+
 }

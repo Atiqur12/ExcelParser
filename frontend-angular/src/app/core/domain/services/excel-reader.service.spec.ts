@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 describe('ExcelReaderService', () => {
-  const PATH_TEST_EXCEL_FILE: string = '../../../../test_data/excelReaderTestFIle.xlsx';
+  const PATH_TEST_EXCEL_FILE: string = '../../../../../test_data/excelReaderTestFIle.xlsx';
   let service: ExcelReaderService;
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('ExcelReaderService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should read an Excel file and parse it to JSON', async () => {
+  it('should read an Excel file and parse it to an array', async () => {
     const excelPath = path.join(__dirname, PATH_TEST_EXCEL_FILE);
     const fileBuffer = fs.readFileSync(excelPath);
     const expectedData: any[] = [

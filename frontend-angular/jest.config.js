@@ -4,13 +4,12 @@ module.exports = {
   setupFilesAfterEnv: [
     '<rootDir>/setup-jest.ts'
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.html$',
-    }
-  },
-  transformIgnorePatterns: [
-    'node_modules/(?!.*\\.mjs$)'
-  ]
+  transform: {
+    '^.+\\.(ts|js|html)$': [
+      'jest-preset-angular',
+      {
+        tsconfig: '<rootDir>/tsconfig.spec.json',
+      },
+    ],
+  }
 };
