@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { ProductDTO } from './dto/productDTO';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
+    processKrakenData(data: ProductDTO[]): { message: string } {
+        return { message: `Received ${data.length} items successfully` };
+    }
 }
