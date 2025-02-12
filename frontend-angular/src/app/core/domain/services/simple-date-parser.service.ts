@@ -1,14 +1,9 @@
-import {Injectable} from '@angular/core';
-
 interface DateComponents {
   day: number;
   month: number;
   year: number;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
 export class SimpleDateParserService {
   private static readonly DELIMITER: RegExp = /[\/\-]/;
   private static readonly TOKEN_MAP: { [token: string]: keyof DateComponents } = {
@@ -18,6 +13,7 @@ export class SimpleDateParserService {
   };
 
   constructor(private readonly format: string) {
+    this.format = format;
   }
 
   public parse(dateString: string): Date | null {

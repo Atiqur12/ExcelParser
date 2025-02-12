@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Product} from '../models/Product.model';
+import {Product} from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataParserService {
   private readonly REQUIRED_KEYS = ['Name', 'UpdatedOn', 'Prices', 'Rate %'];

@@ -1,0 +1,13 @@
+<form class="upload-form">
+  <div class="form-group">
+    <label class="file-label" for="file">Upload Excel File:</label>
+    <input
+      (change)="onFileChange($event)"
+      accept=".xlsx, .xls"
+      class="file-input"
+      id="file"
+      type="file"
+    />
+  </div>
+  <button (click)="sendData($event)" [disabled]="!file" class="submit-button">Submit</button>
+</form>

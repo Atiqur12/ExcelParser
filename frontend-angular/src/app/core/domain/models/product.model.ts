@@ -7,7 +7,7 @@ export class Product {
   public readonly rate: number;
   public readonly category: 'product' | 'equipment';
 
-  constructor(name: string, updated_at: string | number, prices: string, rate: number) {
+  constructor(name: string, updated_at: string | number, prices: string | number, rate: number) {
     this.name = this.normalizeName(name);
     this.updated_at = this.parseUpdateDate(updated_at);
     this.prices = this.parsePrices(prices);
@@ -65,7 +65,11 @@ export class Product {
     return parser.parse(dateString);
   }
 
-  private parsePrices(prices: string): number[] {
+  private parsePrices(prices: string | number): number[] {
+    if (typeof prices === "number") {
+      return [prices]
+    }
+
     const rawPricesList: string[] = prices.split(";");
 
     if (rawPricesList.length > 0) {
