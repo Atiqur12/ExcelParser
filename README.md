@@ -86,8 +86,7 @@ Running tests for Backend
 # rebuild
     docker-compose up --build
 
-# using Docker Compose
-    docker-compose -f docker-compose.prod.yml up --build
+
 
 ## Environment Variable
     PORT=3000
