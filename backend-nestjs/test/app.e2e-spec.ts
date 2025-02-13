@@ -34,7 +34,7 @@ describe('AppController (e2e)', () => {
                 .post('/api/kraken')
                 .send(requestBody)
                 .expect(201)
-                .expect({message: 'Hello World!'});
+                .expect({message: 'Received 2 items successfully'});
         });
 
         it('should return 400 Bad Request when name is not a string', async () => {
