@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, from, switchMap, map} from 'rxjs';
 import {Product} from '../../domain/models/product.model';
 import {ProductMapper} from '../../infra/mapper/product.mapper';
 import {Buffer} from 'buffer';
@@ -19,26 +19,27 @@ export class SendProductListUseCase {
     private readonly mapper: ProductMapper) {
   }
 
-  async execute(file: File) {
-    const products = await this.parseDataFromExcelFile(file);
-    this.executeSend(products);
+  execute(file: File): Observable<{ status: number }> {
+    return this.parseDataFromExcelFile(file).pipe(
+      switchMap(products => this.executeSend(products))
+    );
   }
 
-  executeSend(products: Product[]): Observable<{ status: number }> {
+  private executeSend(products: Product[]): Observable<{ status: number }> {
     const preparedProducts = this.mapper.prepareProductList(products);
     return this.productRepo.sendProducts(preparedProducts);
   }
 
-  private async readDataFromExcel(file: File): Promise<any> {
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    return await this.excelReaderService.readExcelFile(buffer)
+  private parseDataFromExcelFile(file: File): Observable<Product[]> {
+    return this.readDataFromExcel(file).pipe(
+      map(data => this.dataParser.extractProductList(data))
+    );
   }
 
-  private async parseDataFromExcelFile(file: File) {
-    const data = await this.readDataFromExcel(file);
-    return this.dataParser.extractProductList(data);
+  private readDataFromExcel(file: File): Observable<any> {
+    return from(file.arrayBuffer()).pipe(
+      map(arrayBuffer => Buffer.from(arrayBuffer)),
+      switchMap(buffer => from(this.excelReaderService.readExcelFile(buffer)))
+    );
   }
 }
-

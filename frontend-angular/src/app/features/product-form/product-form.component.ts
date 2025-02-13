@@ -35,12 +35,8 @@ export class ProductFormComponent {
       return;
     }
 
-    try {
-      await this.sendProductListUseCase.execute(this.file);
-
-      alert("Data sent successfully");
-    } catch (error) {
-      alert(error);
-    }
+    this.sendProductListUseCase.execute(this.file)
+      .subscribe(next => alert("Request sent successfully"))
   }
+
 }

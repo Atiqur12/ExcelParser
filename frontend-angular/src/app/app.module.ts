@@ -9,23 +9,24 @@ import {routes} from './app.routes';
 import {PRODUCT_REPOSITORY_TOKEN} from './core/shared/product.tokens';
 import {ProductApiRepository} from './core/infra/repositories/product-api.repository';
 import {SendProductListUseCase} from './core/application/use-cases/send-product-list.use-case';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    ProductFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    AppComponent
+    AppComponent,
+    ProductFormComponent,
+    HttpClientModule
   ],
   providers: [
     {provide: PRODUCT_REPOSITORY_TOKEN, useClass: ProductApiRepository},
-    [SendProductListUseCase]
+    [SendProductListUseCase],
+    provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: []
 })
