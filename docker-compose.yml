@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mongodb:
     image: mongo
@@ -11,13 +9,20 @@ services:
       - mongo_data:/data/db
 
   app:
-    build: .
+    build:
+      context: ./backend-nestjs
     container_name: nestjs_app
     restart: always
     ports:
       - "3000:3000"
     depends_on:
       - mongodb
+    working_dir: /usr/src/app
+    volumes:
+      - ./backend-nestjs:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - .env
     command: npm run start:dev
 
 volumes:
