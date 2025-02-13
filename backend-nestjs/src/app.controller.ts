@@ -12,9 +12,10 @@ import {ProductDTO} from "./dto/productDTO";
 export class AppController {
     constructor(private readonly appService: AppService) {}
 
-    @Post('/api/kraken')
-    postKraken(@Body(new ParseArrayPipe({items: ProductDTO})) productList: ProductDTO[]): { message: string } {
+    @Post('/api/kraken') async postKraken(@Body(new ParseArrayPipe({items: ProductDTO})) productList: ProductDTO[]) {
         console.log("START POST /kraken")
-        return this.appService.processKrakenData(productList);
+        const result = await this.appService.processKrakenData(productList);
+        console.log("END POST : ", result);
+        return result;
     }
 }
