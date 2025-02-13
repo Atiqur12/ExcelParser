@@ -44,6 +44,19 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Run with Docker
+
+```bash
+# build & run containers
+$ docker-compose up --build
+
+# stop containers
+$ docker-compose down
+
+# rebuild
+$ docker-compose up --build
+```
+
 
 ## Run tests
 
@@ -69,8 +82,14 @@ $ npm install -g mau
 $ mau deploy
 ```
 
+``` using Docker Compose
+$ docker-compose -f docker-compose.prod.yml up --build
+```
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
+```  Environment Variables
+$ PORT=3000
+$  MONGODB_URI=mongodb://mongodb:27017
+```
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
