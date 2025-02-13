@@ -1,12 +1,6 @@
-import {
-    Controller,
-    Post,
-    Body,
-    ParseArrayPipe
-} from '@nestjs/common';
+import {Body, Controller, ParseArrayPipe, Post} from '@nestjs/common';
 import {AppService} from './app.service';
 import {ProductDTO} from "./dto/productDTO";
-
 
 @Controller()
 export class AppController {

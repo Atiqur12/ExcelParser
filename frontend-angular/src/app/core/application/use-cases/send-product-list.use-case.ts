@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {Observable, from, switchMap, map} from 'rxjs';
+import {from, map, Observable, switchMap} from 'rxjs';
 import {Product} from '../../domain/models/product.model';
 import {ProductMapper} from '../../infra/mapper/product.mapper';
 import {Buffer} from 'buffer';
@@ -25,7 +25,7 @@ export class SendProductListUseCase {
     );
   }
 
-  private executeSend(products: Product[]): Observable<{ status: number }> {
+  executeSend(products: Product[]): Observable<{ status: number }> {
     const preparedProducts = this.mapper.prepareProductList(products);
     return this.productRepo.sendProducts(preparedProducts);
   }

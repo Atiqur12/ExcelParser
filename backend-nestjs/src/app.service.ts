@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { ProductDTO } from './dto/productDTO';
-import { ProductRepository } from "./repository/productRepository";
+import {Injectable} from '@nestjs/common';
+import {ProductRepository} from "./repository/productRepository";
+import {ProductDTO} from "./dto/productDTO";
 
 @Injectable()
 export class AppService {
