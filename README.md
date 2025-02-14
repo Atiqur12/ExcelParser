@@ -66,7 +66,8 @@ Environment Configuration
 
     Create a .env file in the backend directory: touch .env
     Add the following environment variables: 
-             MONGODB_URI=mongodb://localhost:27017/product-db
+             MONGODB_URI=mongodb://root:example@localhost:27017
+             PORT=3000
 
 Running the Backend
 
@@ -93,7 +94,14 @@ Start the MongoDB server (if not already running):
         You should see something like:
             CONTAINER ID   IMAGE   COMMAND  CREATED        STATUS        PORTS                      NAMES
             123abc456def   mongo   "docker-entrypoint..."  2 minutes ago  Up 2 minutes 0.0.0.0:27017->27017/tcp   my-mongo
-
+    Copy creation script : docker cp ./db/initDB.js my-mongo:/initDB.js
+    run the script : docker exec -it my-mongo mongosh --host localhost --port 27017 --username root --password example ./initDB.js
+    check db is running : docker exec -it my-mongo mongosh --host localhost --port 27017 --username root --password example
+    in the prompt run the command : show dbs
+    the database productsDB should be present
+    you can disconnect from the db now
+            
+    
 
 
 
