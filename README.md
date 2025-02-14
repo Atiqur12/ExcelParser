@@ -77,21 +77,6 @@ Running tests for Backend
 
     Navigate to the frontend directory: cd backend-nestjs
     Install dependencies: npm test:e2e
-## By using Docker 
-    build & run containers
-    docker-compose up --build
-
-# stop containers
-    docker-compose down
-# rebuild
-    docker-compose up --build
-
-
-
-## Environment Variable
-    PORT=3000
-    MONGODB_URI=mongodb://mongodb:27017
-
 
 ## Running the DB
 
