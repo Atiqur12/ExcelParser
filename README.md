@@ -29,8 +29,6 @@ Prerequisites
 
     Node.js (v16 or higher)
 
-    Angular CLI (npm install -g @angular/cli)
-
 Installation
 
     Navigate to the frontend directory: cd frontend-angular
@@ -52,10 +50,6 @@ Running tests for Frontend
 Prerequisites
 
     Node.js (v16 or higher)
-
-    MongoDB (running locally or remotely)
-
-    NestJS CLI (npm install -g @nestjs/cli)
 
 Installation
 
